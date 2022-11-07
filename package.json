@@ -1,13 +1,13 @@
 {
-  "name": "react-dashboard-app",
+  "name": "react-dashboard-backend",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server/server.js",
-    "backend": "nodemon server/server.js",
-    "dev": "concurrently \"npm run backend\" \"npm run start --prefix client\""
+    "start": "node server.js",
+    "backend": "nodemon server.js",
+    "heroku-postbuild": "npm run build"
   },
   "repository": {
     "type": "git",

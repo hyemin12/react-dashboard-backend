@@ -15,23 +15,12 @@ app.use(bodyParser.json());
 
 var connection;
 
-if (process.env.JAWSDB_URL) {
-  // DB is JawsDB on Heroku
-  connection = mysql.createConnection({
-    host: process.env.JAWSDB_HOST,
-    user: process.env.JAWSDB_USER,
-    password: process.env.JAWSDB_PASSWORD,
-    database: process.env.JAWSDB_DATABASE,
-  });
-} else {
-  // DB is local on localhost
-  connection = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: process.env.MYSQL_PASSWORD,
-    database: process.env.MYSQL_DATABASE,
-  });
-}
+connection = mysql.createConnection({
+  host: process.env.JAWSDB_HOST,
+  user: process.env.JAWSDB_USER,
+  password: process.env.JAWSDB_PASSWORD,
+  database: process.env.JAWSDB_DATABASE,
+});
 
 // 데이터베이스와 연동
 connection.connect();
