@@ -29,6 +29,7 @@ app.use(
   cors({
     origin: [
       "https://hm-dashboard-backend.herokuapp.com/",
+      "http://localhost:8000/",
       "http://localhost:3000/",
     ],
     credentials: true,
