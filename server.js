@@ -15,11 +15,18 @@ app.use(bodyParser.json());
 
 var connection;
 
+// connection = mysql.createConnection({
+//   host: process.env.JAWSDB_HOST,
+//   user: process.env.JAWSDB_USER,
+//   password: process.env.JAWSDB_PASSWORD,
+//   database: process.env.JAWSDB_DATABASE,
+// });
+
 connection = mysql.createConnection({
-  host: process.env.JAWSDB_HOST,
-  user: process.env.JAWSDB_USER,
-  password: process.env.JAWSDB_PASSWORD,
-  database: process.env.JAWSDB_DATABASE,
+  host: "localhost",
+  user: "root",
+  password: process.env.MYSQL_PASSWORD,
+  database: process.env.MYSQL_DATABASE,
 });
 
 // 데이터베이스와 연동
@@ -27,11 +34,7 @@ connection.connect();
 
 app.use(
   cors({
-    origin: [
-      "https://hm-dashboard-backend.herokuapp.com/",
-      "http://localhost:8000/",
-      "http://localhost:3000/",
-    ],
+    origin: ["http://localhost:8000/", "http://localhost:3000/"],
     credentials: true,
     optionsSuccessStatus: 200,
   })
@@ -101,7 +104,7 @@ app.post("/api/todos/create", (req, res) => {
   const text = req.body.text;
   const date = req.body.date;
   connection.query(
-    `INSERT INTO todos_table (title, date) VALUES(?,?)`,
+    `INSERT INTO todos_table (text, date) VALUES(?,?)`,
     [text, date],
     (err, rows, fields) => {
       if (err) {
@@ -126,11 +129,10 @@ app.post("/api/todos/delete", (req, res) => {
 });
 app.post("/api/todos/edit", (req, res) => {
   const text = req.body.text;
-  const date = req.body.date;
   const id = req.body.id;
   connection.query(
-    `UPDATE lntgg9pdv0ixqjiq.todos_table SET text = ? date = ? WHERE ( id = ?)`,
-    [text, date, id],
+    `UPDATE lntgg9pdv0ixqjiq.todos_table SET text = ? WHERE ( id = ?)`,
+    [text, id],
     (err, rows, fields) => {
       if (err) {
         console.log(err);
