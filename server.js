@@ -25,6 +25,17 @@ connection = mysql.createConnection({
 // 데이터베이스와 연동
 connection.connect();
 
+app.use(
+  cors({
+    origin: [
+      "https://hm-dashboard-backend.herokuapp.com/",
+      "http://localhost:3000/",
+    ],
+    credentials: true,
+    optionsSuccessStatus: 200,
+  })
+);
+
 app.get("/", (req, res) => {
   res.send("Hello!");
 });
