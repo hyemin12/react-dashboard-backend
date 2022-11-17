@@ -73,7 +73,7 @@ app.post("/api/events/create", (req, res) => {
   );
 });
 app.post("/api/events/delete", (req, res) => {
-  const id = req.body.idx;
+  const id = req.body.id;
 
   connection.query(
     `DELETE FROM events_table where id=?`,
@@ -116,6 +116,7 @@ app.post("/api/todos/create", (req, res) => {
 });
 app.post("/api/todos/delete", (req, res) => {
   const id = req.body.id;
+  console.log(req.body);
   connection.query(
     "DELETE FROM todos_table where id=?",
     [id],
@@ -131,7 +132,7 @@ app.post("/api/todos/edit", (req, res) => {
   const text = req.body.text;
   const id = req.body.id;
   connection.query(
-    `UPDATE lntgg9pdv0ixqjiq.todos_table SET text = ? WHERE ( id = ?)`,
+    `UPDATE todos_table SET text = ? WHERE ( id = ?)`,
     [text, id],
     (err, rows, fields) => {
       if (err) {
@@ -145,7 +146,7 @@ app.post("/api/todos/checked", (req, res) => {
   const isChecked = req.body.isChecked;
   const id = req.body.id;
   connection.query(
-    `UPDATE lntgg9pdv0ixqjiq.todos_table SET isChecked = ?WHERE ( id = ?)`,
+    `UPDATE todos_table SET isChecked = ? WHERE (id = ?)`,
     [isChecked, id],
     (err, rows, fields) => {
       if (err) {
